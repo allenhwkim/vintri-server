@@ -1,4 +1,4 @@
 node_modules
-db
+db/*.nosql
 .nyc_output
 .DS_Store

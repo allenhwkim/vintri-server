@@ -5,7 +5,7 @@
 // Add request logging by persisting the x-user header and request details to the embedded 'no-sql' database.
 const path = require('path');
 const nosql = require('nosql');
-const db = nosql.load(path.resolve('db', 'rating.nosql'));
+const db = nosql.load(path.resolve('db', 'log.nosql'));
 
 const xUserMiddleware = {
   logRequest: function(req) {
