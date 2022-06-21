@@ -1,0 +1,6 @@
+API URLs:
+
+GET /api/beers 
+GET /api/beers?name=Larger
+POST /api/beers/:id/rating   (with body {rating: 5, comments: "This is a comment"})
+
