@@ -58,5 +58,30 @@ $ npm test
     ✔ should return 401 with an empty x-user header
   4 passing (11ms)
 ```
+## To test caching works
+I have added `x-cached` header if the response is from server-side cache
+```
+vintri-server main $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers?name=larger
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 743
+ETag: W/"2e7-FYg1IidThlX+tHgek1K6oBJ72EY"
+Date: Thu, 23 Jun 2022 21:21:46 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 
+vintri-server main $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers?name=larger
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Vary: Origin
+x-cached: true  <---------------------- check this header if response is from cache
+Content-Type: application/json; charset=utf-8
+Content-Length: 743
+ETag: W/"2e7-FYg1IidThlX+tHgek1K6oBJ72EY"
+Date: Thu, 23 Jun 2022 21:21:49 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
 
