@@ -52,19 +52,29 @@ router.get('/', async (req, res) => {
 router.post('/:id(\\d+)/rating', async (req, res) => {
   const {id} = req.params;
   const {rating, comments} = req.body;
+  
+  // To ensure the id parameter is a valid beer id 
+  try {
+    const resp = await axios.get(`https://api.punkapi.com/v2/beers/${id}`);
+    const [beer] = resp.data || [];
+  } catch (error) {
+    res.status(400).send(`Invalid beer id: ${id}`);
+    return;
+  }
 
-  // Ensure the id parameter is a valid beer id and the rating is a valid value in the range of 1 to 5
-  if (Number(id) < 1 || Number(id) > 5) {
-    res.status(400).send(`Validation failed: Invalid beer id: ${id}`);
-  } else {
-    try {
-      // TODO: Check if we need to validate rating as a valid number and comments as a valid string
-      db.insert({ id, rating, comments }).callback( err => {
-        res.status(201).json(`The rating for id(${id}) is created with comments "${comments}"`);
-      });
-    } catch(e) { // this includes 404
-      res.status(error.response.status).send(e);
-    }
+  // To ensure rating is between 1 and 5`
+  if (Number(rating) < 1 || Number(rating) > 5) { 
+    res.status(400).send(`Invalid rating: ${rating}`);
+    return;
+  }
+
+  // If all good, save to database, and return 201
+  try {
+    db.insert({ id, rating, comments }).callback( err => {
+      res.status(201).json(`The rating for id(${id}) is created with comments "${comments}"`);
+    });
+  } catch(e) { // this includes 404
+    res.status(error.response.status).send(e);
   }
 });
 
