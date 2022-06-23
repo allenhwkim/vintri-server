@@ -33,9 +33,9 @@ $ curl -I -X GET -H "x-user: invalid" http://localhost:5000/api/beers # Invalid 
 $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers
 $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers?name=larger 
 
-$ curl -I -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":5, "comments": "Very Good"}' http://localhost:5000/api/beers/5/rating
-$ curl -I -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":5, "comments": "Very Good"}' http://localhost:5000/api/beers/1000/rating # With an invalid beer id
-$ curl -I -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":10, "comments": "Excellent"}' http://localhost:5000/api/beers/50/rating # With an invalid beer rating
+$ curl -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":5, "comments": "Very Good"}' http://localhost:5000/api/beers/5/rating
+$ curl -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":5, "comments": "Very Good"}' http://localhost:5000/api/beers/1000/rating # With an invalid beer id
+$ curl -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d '{"rating":10, "comments": "Excellent"}' http://localhost:5000/api/beers/50/rating # With an invalid beer rating
 ```
 
 ## Check if nosql db is propelly logged
