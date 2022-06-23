@@ -28,8 +28,8 @@ There are 3 API urls available
 * `GET /api/beers?name=larger`
 * `POST /api/beers/:id/rating`   (with body {rating: 5, comments: "This is a comment"})
 ```
-$ curl -I -X GET http://localhost:5000/api/beers # Invalid request
-$ curl -I -X GET -H "x-user: invalid" http://localhost:5000/api/beers # Invalid request
+$ curl -I -X GET http://localhost:5000/api/beers # Invalid request with no header
+$ curl -I -X GET -H "x-user: invalid" http://localhost:5000/api/beers # Invalid request with invalid x-user header
 $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers
 $ curl -I -X GET -H "x-user: allen@kim.com" http://localhost:5000/api/beers?name=larger 
 
