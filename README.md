@@ -27,6 +27,8 @@ There are 3 API urls available
 * `GET /api/beers`
 * `GET /api/beers?name=larger`
 * `POST /api/beers/:id/rating`   (with body {rating: 5, comments: "This is a comment"})
+
+You may use your Postman app. or, use the following `curl` commands to test the API.
 ```
 $ curl -I -X GET http://localhost:5000/api/beers # Invalid request with no header
 $ curl -I -X GET -H "x-user: invalid" http://localhost:5000/api/beers # Invalid request with invalid x-user header
