@@ -33,8 +33,8 @@ router.get('/', async (req, res) => {
         res.status(404).send(`<h1>No beer found with name ${req.query.name}</h1>`);
       } else {
         const beers = resp.data.map(beer => {
-          const { id, name, description, first_brewed, food_pairings } = beer;
-          return { id, name, description, first_brewed, food_pairings };
+          const { id, name, description, first_brewed, food_pairing } = beer;
+          return { id, name, description, first_brewed, food_pairing };
         });
         res.status(200).json(beers);
         cache.put(url, beers, 60*60*1000); // // Task 5: caching (with 60 minutes cache expiry time)
