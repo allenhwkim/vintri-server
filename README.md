@@ -40,9 +40,8 @@ $ curl -X POST -H "x-user: allen@kim.com" -H 'Content-Type: application/json' -d
 
 ## Check if nosql db is propelly logged
 ```
-$ cd db
-$ cat log.nosql
-$ cat rating.nosql
+$ cat db/log.nosql
+$ cat db/rating.nosql
 ```
 
 ## To run unit test
