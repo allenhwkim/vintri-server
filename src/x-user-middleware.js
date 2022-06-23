@@ -33,7 +33,7 @@ const xUserMiddleware = {
     } catch(e) {
       console.error(e);
       console.error(req.headers);
-      res.status(400);
+      res.status(401);
       res.send('Unauthorized');
     }
   }

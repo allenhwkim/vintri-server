@@ -34,17 +34,17 @@ describe("xUserMiddleware()", function() {
     expect(next.calledOnce).to.equal(true); 
   });
 
-  it('should return 400 with an invalid x-user header', function() {
+  it('should return 401 with an invalid x-user header', function() {
     req = { headers: {'x-user': 'invalid' }};
     xUserMiddleware.func(req, res, next);
-    expect(res.status.withArgs(400).calledOnce).to.equal(true); 
+    expect(res.status.withArgs(401).calledOnce).to.equal(true); 
     expect(res.send.calledOnce).to.equal(true);
   });
 
-  it('should return 400 with an empty x-user header', function() {
+  it('should return 401 with an empty x-user header', function() {
     req = { headers: {}};
     xUserMiddleware.func(req, res, next);
-    expect(res.status.withArgs(400).calledOnce).to.equal(true);
+    expect(res.status.withArgs(401).calledOnce).to.equal(true);
     expect(res.send.calledOnce).to.equal(true);
   });
 });
