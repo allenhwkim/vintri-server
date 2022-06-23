@@ -14,7 +14,13 @@ const router = express.Router();
 // The endpoint will use the publicly available Punk API to find all beers matching the search parameter described above.
 // The response should be a JSON object containing the following properties from the Punk API response: id, name, description, first_brewed, food_pairings
 router.get('/', async (req, res) => {
-  const qs = req.query.name  ? `?beer_name=${req.query.name}` : ''; // TODO: sanitize beer name
+  const queries = [];
+  req.query.name && queries.push(`beer_name=${req.query.name}`);
+  req.query.page && queries.push(`page=${req.query.page}`);
+  req.query.per_page && queries.push(`per_page=${req.query.per_page}`);
+  req.query.ids && queries.push(`ids=${req.query.ids}`); // separated by pipe (|) 
+
+  const qs = queries.length ? `?${queries.join('&')}` : '';
   try {
     const url = 'https://api.punkapi.com/v2/beers' + qs;
     const cached = cache.get(url);

@@ -30,7 +30,9 @@ const xUserMiddleware = {
       } else {
         throw 'Invalid user ID';
       }
-    } catch {
+    } catch(e) {
+      console.error(e);
+      console.error(req.headers);
       res.status(400);
       res.send('Unauthorized');
     }
